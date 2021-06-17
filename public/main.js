@@ -2,7 +2,8 @@
 getCSS.onclick=()=>{
     const request=new XMLHttpRequest()//1、创建对象 XMLHttpRequest()
     request.open('GET','/style.css')//2、调用open()方法，readyState=1
-// 3、监听onload/onerror事件
+// 3、监听onload/onerror事件，onerror适配不了AJAX，改用onreadystatechange
+//onreadystatechange是异步里的回调，等request.readyState=4（下载完成）后浏览器会回头调用onreadystatechange
 request.onreadystatechange=()=>{
     //下载完成，但不知道下载的是不是正确的事件，成功状态码2xx,失败4xx 5xx
     if(request.readyState===4){  //readyState=4下载完成
